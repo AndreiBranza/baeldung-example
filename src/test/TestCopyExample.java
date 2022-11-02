@@ -1,5 +1,6 @@
 package test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -12,21 +13,36 @@ import baeldung.Person;
 public class TestCopyExample {
 	
 	@Test
-	void testEqualsReferenceCopy() 
+	public void objectsTheSame() 
 	{
-		Person alexExpected = new Person("Alex", "Jones", new Address("Main Street", "Main City"));
-		Person shallowCopyOfAlex = alexExpected;
+		Person alex = new Person("Alex", "Jones", new Address("Main Street", "Main City"));
+		Person shallowCopyOfAlex = new Person(alex.getFirstName(), alex.getLastName(), alex.getAddress());
 		
-		assertEquals(alexExpected, shallowCopyOfAlex, "Should be equal considering we are just copying the reference.");
+		assertThat(alex).usingRecursiveComparison().isEqualTo(shallowCopyOfAlex);
 	}
 	
 	@Test
-	void testNotEquals() throws CloneNotSupportedException
+	public void althoughObjectsAreDifferentChangingTheOriginalModifiesTheCopyToo()
 	{
-		Person alexExpected = new Person("Alex", "Jones", new Address("Main Street", "Main City"));
-
-		Person deepCopyOfAlex = (Person) alexExpected.clone();
 		
-		assertNotEquals(alexExpected, deepCopyOfAlex, "Should not be equal considering we are cloning the object.");
+		Person alex = new Person("Alex", "Jones", new Address("Main Street", "Main City"));
+                Person shallowCopyOfAlex = new Person(alex.getFirstName(), alex.getLastName(), alex.getAddress());
+		
+		alex.getAddress().setCityName("Unknown City");
+				
+		assertThat(alex.getAddress()).usingRecursiveComparison().isEqualTo(shallowCopyOfAlex.getAddress());
+	}
+	
+	@Test
+	public void deepCopyUsingConstructorCopying()
+	{
+	    Person alex = new Person("Alex", "Jones", new Address("Main Street", "Main City"));
+            Person constructorCopyOfAlex = new Person(alex);
+            
+            assertThat(alex).usingRecursiveComparison().isEqualTo(constructorCopyOfAlex);
+            
+            alex.setAddress(new Address("Unknown Street", "Unknown City"));
+            
+            assertThat(alex).usingRecursiveComparison().isNotEqualTo(constructorCopyOfAlex);
 	}
 }
