@@ -45,4 +45,18 @@ public class TestCopyExample {
             
             assertThat(alex).usingRecursiveComparison().isNotEqualTo(constructorCopyOfAlex);
 	}
+	
+	@Test
+	public void deepCopyUsingCloneMethod()
+	{
+	    Person alex = new Person("Alex", "Jones", new Address("Main Street", "Main City"));
+            Person cloneMethodCopyOfAlex = alex.clone();
+            
+            assertThat(alex).usingRecursiveComparison().isEqualTo(cloneMethodCopyOfAlex);
+            
+            alex.setAddress(new Address("Unknown Street", "Unknown City"));
+            
+            assertThat(alex).usingRecursiveComparison().isNotEqualTo(cloneMethodCopyOfAlex);
+	    
+	}
 }
