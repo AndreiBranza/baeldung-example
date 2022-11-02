@@ -21,9 +21,13 @@ public class Address
 	private Address() {}
 	
 	public Address(String streetName, String cityName) {
-		super();
 		this.streetName = streetName;
 		this.cityName = cityName;
+	}
+	
+	public Address(Address addressToBeCopied)
+	{
+	    this(addressToBeCopied.getStreetName(), addressToBeCopied.getCityName());
 	}
 	
 	@Override
