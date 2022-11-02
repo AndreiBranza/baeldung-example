@@ -1,6 +1,6 @@
 package baeldung;
 
-public class Address
+public class Address implements Cloneable
 {
 	private String streetName;
 	private String cityName;
@@ -33,7 +33,21 @@ public class Address
 	@Override
 	public String toString() {
 		return "Address [streetName=" + streetName + ", cityName=" + cityName + "]";
-	}	
+	}
+        
+	@Override
+        protected Address clone() {
+            try
+            {
+                return (Address) super.clone();
+            } catch (CloneNotSupportedException cloneException)
+            {
+                return new Address(this.streetName, this.cityName);
+            }  
+        }	
+        
+	
+	
 	
 	
 }
