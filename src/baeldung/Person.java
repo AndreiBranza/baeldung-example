@@ -22,6 +22,11 @@ public class Person implements Cloneable
 		this.address = address;
 	}
 	
+	public Person(Person personToBeCopied)
+	{
+	    this(personToBeCopied.getFirstName(), personToBeCopied.getLastName(), new Address(personToBeCopied.getAddress()));
+	}
+	
 	
 	public String getFirstName() {
 		return firstName;
