@@ -7,10 +7,17 @@ public class Person implements Cloneable
 	private Address address;
 	
 	@Override
-	public Object clone() throws CloneNotSupportedException 
+	public Person clone() 
 	{
-		return (Person)super.clone();
-		
+	    Person clone = null;
+	    try
+	    {
+	        clone = (Person) super.clone();
+	    } catch (CloneNotSupportedException cloneException)
+	    {
+	        clone = new Person(this.getFirstName(), this.getLastName(), (Address) this.address.clone());
+	    }	    
+	    return clone;		
 	}
 	
 	private Person() {}
@@ -56,5 +63,9 @@ public class Person implements Cloneable
 	public String toString() {
 		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + "]";
 	}
+
+
+	
+	
 		
 }
