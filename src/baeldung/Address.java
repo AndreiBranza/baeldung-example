@@ -45,9 +45,4 @@ public class Address implements Cloneable
                 return new Address(this.streetName, this.cityName);
             }  
         }	
-        
-	
-	
-	
-	
 }
