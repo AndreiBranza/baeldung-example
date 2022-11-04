@@ -5,6 +5,18 @@ public class Address implements Cloneable
 	private String streetName;
 	private String cityName;
 	
+	private Address() {}
+        
+        public Address(String streetName, String cityName) {
+                this.streetName = streetName;
+                this.cityName = cityName;
+        }
+        
+        public Address(Address addressToBeCopied)
+        {
+            this(addressToBeCopied.getStreetName(), addressToBeCopied.getCityName());
+        }
+	
 	public String getStreetName() {
 		return streetName;
 	}
@@ -16,18 +28,6 @@ public class Address implements Cloneable
 	}
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
-	}
-	
-	private Address() {}
-	
-	public Address(String streetName, String cityName) {
-		this.streetName = streetName;
-		this.cityName = cityName;
-	}
-	
-	public Address(Address addressToBeCopied)
-	{
-	    this(addressToBeCopied.getStreetName(), addressToBeCopied.getCityName());
 	}
 	
 	@Override
@@ -45,9 +45,5 @@ public class Address implements Cloneable
                 return new Address(this.streetName, this.cityName);
             }  
         }	
-        
-	
-	
-	
-	
+        	
 }
