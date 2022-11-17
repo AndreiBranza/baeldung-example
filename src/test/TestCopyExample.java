@@ -11,7 +11,7 @@ import baeldung.Person;
 
 
 public class TestCopyExample {
-	
+    //Test class
 	@Test
 	public void objectsTheSame() 
 	{
