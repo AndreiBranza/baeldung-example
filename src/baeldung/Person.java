@@ -2,7 +2,6 @@ package baeldung;
 
 public class Person implements Cloneable
 {
-    //Person class
 	private String firstName;
 	private String lastName;
 	private Address address;
