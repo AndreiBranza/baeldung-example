@@ -1,4 +1,4 @@
-package baeldung;
+package com.baeldung;
 
 public class Address implements Cloneable
 {

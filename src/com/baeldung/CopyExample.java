@@ -1,4 +1,4 @@
-package baeldung;
+package com.baeldung;
 
  class CopyExample {
 
