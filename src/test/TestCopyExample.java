@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-import baeldung.Address;
-import baeldung.Person;
+import com.baeldung.Address;
+import com.baeldung.Person;
 
 
 public class TestCopyExample {
@@ -38,11 +38,11 @@ public class TestCopyExample {
 	    Person alex = new Person("Alex", "Jones", new Address("Main Street", "Main City"));
             Person constructorCopyOfAlex = new Person(alex);
             
-            assertThat(alex).usingRecursiveComparison().isEqualTo(constructorCopyOfAlex);
-            
-            alex.setAddress(new Address("Unknown Street", "Unknown City"));
-            
-            assertThat(alex).usingRecursiveComparison().isNotEqualTo(constructorCopyOfAlex);
+		assertThat(alex).usingRecursiveComparison().isEqualTo(constructorCopyOfAlex);
+
+		alex.setAddress(new Address("Unknown Street", "Unknown City"));
+
+		assertThat(alex).usingRecursiveComparison().isNotEqualTo(constructorCopyOfAlex);
 	}
 	
 	@Test
@@ -51,11 +51,11 @@ public class TestCopyExample {
 	    Person alex = new Person("Alex", "Jones", new Address("Main Street", "Main City"));
             Person cloneMethodCopyOfAlex = alex.clone();
             
-            assertThat(alex).usingRecursiveComparison().isEqualTo(cloneMethodCopyOfAlex);
-            
-            alex.setAddress(new Address("Unknown Street", "Unknown City"));
-            
-            assertThat(alex).usingRecursiveComparison().isNotEqualTo(cloneMethodCopyOfAlex);
+		assertThat(alex).usingRecursiveComparison().isEqualTo(cloneMethodCopyOfAlex);
+
+		alex.setAddress(new Address("Unknown Street", "Unknown City"));
+
+		assertThat(alex).usingRecursiveComparison().isNotEqualTo(cloneMethodCopyOfAlex);
 	    
 	}
 }
